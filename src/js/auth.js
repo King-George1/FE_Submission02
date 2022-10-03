@@ -65,3 +65,35 @@ export const getCookieAccessToken = (cookieKey) => {
     return "";
 
 }
+
+//Function to retrieve access_token at from endpoint when access_token expires
+export const resetAccessToken = (refreshToken) => {
+    return new Promise((resolve, reject) => {
+        fetch(`${BASEURL}/refresh`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${refreshToken}`
+            }
+        })
+            .then(res => {
+                resolve(res.json())
+            })
+            .catch(err => {
+                reject(err);
+            })
+    })
+
+}
+
+//Function to reset access_token at the client-side storage when access_token expires
+export const refreshCookieAccessToken = (refreshToken) => {
+    resetAccessToken(refreshToken)
+        .then(data => {
+            setCookieAccessToken(data.access_token, refreshToken);
+        })
+        .catch(err => {
+            console.log("refreshCookieAccessToken - Error", err);
+        })
+}

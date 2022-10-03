@@ -140,14 +140,24 @@ export const authenticateCalls = () => {
     //Add a condition to determine if not on sign in page
     if (getCookieAccessToken(ACCESS_TOKEN_KEY) === "" && refreshToken === "") {
         // Redirect user to login page
-        window.alert("Redirecting user to homepage")
+        window.location.assign('./');
     } else if (getCookieAccessToken(ACCESS_TOKEN_KEY) === "" && refreshToken !== "") {
         //refresh access_token
         refreshCookieAccessToken(refreshToken);
     }
     else {
         //Redirect user to login page
-        window.alert("Redirecting user to homepage")
+        window.location.assign('./');
     }
 
+}
+
+
+//Function to protect private routes
+export const protectRoutes = () => {
+    const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY) ? JSON.parse(localStorage.getItem(REFRESH_TOKEN_KEY)) : "";
+    if (getCookieAccessToken(ACCESS_TOKEN_KEY) === "" && refreshToken === "") {
+        //Redirect user to login page
+        window.location.assign('./');
+    }
 }

@@ -45,3 +45,23 @@ export const setCookieAccessToken = (accessToken, refreshToken) => {
     localStorage.setItem(REFRESH_TOKEN_KEY, JSON.stringify(refreshToken))
 
 }
+
+
+//Function for retrieving access_token from clien-side storage
+export const getCookieAccessToken = (cookieKey) => {
+    const name526 = cookieKey + "=";
+    const ca = document.cookie.split(';');
+
+    //When access token has not expired
+    for (let i = 0; i < ca.length; i++) {
+        let a1 = ca[i];
+        while (a1.charAt(0) == ' ') {
+            a1 = a1.substring(1);
+        }
+        if (a1.indexOf(name526) === 0) {
+            return a1.substring(name526.length, a1.length);
+        }
+    }
+    return "";
+
+}

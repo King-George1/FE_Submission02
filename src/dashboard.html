@@ -7,6 +7,61 @@
     <title>Dashboard</title>
   </head>
   <body>
-    <h1>Dashboard</h1>
+    <div id="navBar">
+      <img src="../assets/Freddys_Logo.svg" alt="" id="logo" />
+      <a class="navItem" href="">Dashboard</a>
+      <a class="navItem" href="">Orders</a>
+      <a class="navItem" href="">Logout</a>
+    </div>
+    <div id="dashboard">
+      <h1>Dashboard</h1>
+      <div id="order-summary">
+        <div class="summary-item">
+          <p>Today</p>
+          <p>
+            <span id="today-rev"></span> /
+            <span id="today-orders"></span>
+          </p>
+        </div>
+        <div class="summary-item">
+          <p>Last Week</p>
+          <p>
+            <span id="lastweek-rev"></span> /
+            <span id="lastweek-orders"></span>
+          </p>
+        </div>
+        <div class="summary-item">
+          <p>Last Month</p>
+          <p>
+            <span id="lastmonth-rev"></span> /
+            <span id="lastmonth-orders"></span>
+          </p>
+        </div>
+      </div>
+
+      <div id="chart-container">
+        <div id="order-graphs">
+          <h1 id="graph-header">Revenue (last 7 days)</h1>
+          <div class="checkBox">
+            <input class="check-box" type="checkbox" id="check-box" />
+          </div>
+        </div>
+        <canvas id="myChart"></canvas>
+      </div>
+      <div id="best-sellers">
+        <h1>Best Sellers</h1>
+        <table id="sales">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th># Units sold</th>
+              <th>Revenue</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
   </body>
 </html>

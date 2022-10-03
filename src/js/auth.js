@@ -34,3 +34,14 @@ const initiatelogin = (username, password) => {
 
 
 }
+
+//Function to store access_token and refresh_token at the client side when user logs in
+export const setCookieAccessToken = (accessToken, refreshToken) => {
+    let expires = "";
+    let date = new Date();
+    date.setTime(date.getTime() + COOKIE_MAX_AGE);
+    expires = `; expires=${date.toUTCString()}`;
+    document.cookie = `${ACCESS_TOKEN_KEY}=${accessToken}${expires};path=/`;
+    localStorage.setItem(REFRESH_TOKEN_KEY, JSON.stringify(refreshToken))
+
+}

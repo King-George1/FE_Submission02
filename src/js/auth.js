@@ -130,3 +130,24 @@ export const logout = () => {
     //Direct user to login page
     window.location.assign('./');
 }
+
+
+//This function will help reduce the number of round trip if access_token expires
+//This function will be called before making a request to the backend for data
+export const authenticateCalls = () => {
+    const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY) ? JSON.parse(localStorage.getItem(REFRESH_TOKEN_KEY)) : "";
+
+    //Add a condition to determine if not on sign in page
+    if (getCookieAccessToken(ACCESS_TOKEN_KEY) === "" && refreshToken === "") {
+        // Redirect user to login page
+        window.alert("Redirecting user to homepage")
+    } else if (getCookieAccessToken(ACCESS_TOKEN_KEY) === "" && refreshToken !== "") {
+        //refresh access_token
+        refreshCookieAccessToken(refreshToken);
+    }
+    else {
+        //Redirect user to login page
+        window.alert("Redirecting user to homepage")
+    }
+
+}

@@ -1,0 +1,70 @@
+body{
+    background-color: lightgray;
+    height: 90%;
+    
+}
+
+input::-webkit-input-placeholder {
+    color: black;
+}
+#main-container{
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) 
+}
+body #login-container{
+    width: 14.8rem;
+    height: 24.25rem;
+}
+#login-container{
+    border: 5px solid darkgray;
+    padding: 1.7rem;   
+}
+.login-info{
+    display: flex;
+}
+.login-info img{
+    margin: 24px 0px 24px 0px;
+}
+
+.form-fields{
+    display: inline-block;
+    width: 94%;
+    padding-left: 7px;
+    border: 2px solid darkgray;
+    height: 35px;
+    font-size: 1.3rem;
+    
+}
+
+#input-username{
+    margin-top: 20px;   
+}
+
+#input-password{
+    margin-top: 28px;
+}
+
+#input-submit{
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+#input-submit:hover{
+    background-color: darkgray;
+    color: white;
+}
+
+
+#shop-title{
+    font-size: 1.55rem;
+}
+#error-message{
+    color: red;
+    font-size: 1.1rem;
+    visibility: hidden;
+    margin-bottom: 5px;
+    margin-top: 8px;
+}

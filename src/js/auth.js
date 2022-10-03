@@ -97,3 +97,36 @@ export const refreshCookieAccessToken = (refreshToken) => {
             console.log("refreshCookieAccessToken - Error", err);
         })
 }
+
+//Call this function when error message is 'token has expired'.
+export const getAccessToken = () => {
+    let access_token = getCookieAccessToken(ACCESS_TOKEN_KEY);
+    if (!access_token) {
+        refreshCookieAccessToken()
+            .then(res => {
+                setCookieAccessToken(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+}
+
+
+//Function to clean tokens from client side storage when user logs out
+const cleanTokens = () => {
+    let expires = "";
+    let date = new Date();
+    date.setTime(date.getTime() - 24 * 60 * 60);
+    expires = `; expires=${date.toUTCString()}`;
+    document.cookie = `${ACCESS_TOKEN_KEY}=${accessToken}${expires};path=/`;
+    localStorage.removeItem(REFRESH_TOKEN_KEY);
+}
+
+
+//Function to call when user logs out
+export const logout = () => {
+    cleanTokens();
+    //Direct user to login page
+    window.location.assign('./');
+}

@@ -1,0 +1,29 @@
+{
+  "name": "fe_submission02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "dev": "webpack-dev-server",
+    "build-dev": "webpack --mode development",
+    "build-prod": "webpack --mode production"
+  },
+  "dependencies": {
+    "webpack-dev-server": "^4.11.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
+    "babel-loader": "^8.2.5",
+    "file-loader": "^6.2.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

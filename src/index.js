@@ -1,6 +1,7 @@
 import { loginUser, setCookieAccessToken } from "./js/auth";
 import "./css/login.css";
 import "./assets/Freddys_Logo.svg";
+import "./assets/searchbar.png";
 
 
 const loginForm = document.getElementById("loginForm");

@@ -36,8 +36,16 @@ const config = {
         ]
       },
       {
-        test: /\.svg$/,
-        use: 'file-loader'
+        test: /\.(jpg|jpeg|gif|png|svg|webp)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "./images",
+              name: "[name].[ext]",
+            },
+          },
+        ]
       }
     ]
   },

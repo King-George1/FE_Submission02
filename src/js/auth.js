@@ -145,10 +145,6 @@ export const authenticateCalls = () => {
         //refresh access_token
         refreshCookieAccessToken(refreshToken);
     }
-    else {
-        //Redirect user to login page
-        window.location.assign('./');
-    }
 
 }
 

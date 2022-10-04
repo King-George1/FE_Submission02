@@ -35,7 +35,8 @@ const loadOrderDataAndDisplay = (initPage, searchTerm) => {
                 status: `${item.status.charAt(0).toUpperCase()}${item.status.slice(1)}`
             }))
             currentPage.innerHTML = res.page;
-            lastPage.innerHTML = totalPages = Math.ceil(res.total / res.orders.length);
+            totalPages = Math.ceil(res.total / res.orders.length);
+            lastPage.innerHTML = isNaN(totalPages) ? 1 : totalPages;
             for (let item of orderData) {
                 createOrderTableDataRows(item.productName, item.date, item.price, item.status);
             }

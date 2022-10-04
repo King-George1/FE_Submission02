@@ -11,6 +11,7 @@ const graphHeading = document.getElementById("graph-header");
 const tableRef = document.getElementById("sales").getElementsByTagName('tbody')[0];
 const navToOrder = document.getElementById("nav-to-order");
 const logOutUser = document.getElementById("log-out-user");
+const overLay = document.getElementById("the-overlay");
 
 let data;
 let sales_over_time_week;
@@ -70,6 +71,7 @@ const loadDataAndPlot = () => {
                 createTableDataRows(item.name, item.price, item.unitSold, item.revenue);
             }
             const myChart = new Chart(ctx, graph)
+            overLay.style.display = "none";
 
         })
         .catch(err => {

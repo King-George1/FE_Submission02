@@ -102,3 +102,32 @@ export const graphing = (dataForGraph, duration) => {
         }
     };
 }
+
+
+export const getOrdersData = (page = 1, searchTerm = '') => {
+    return new Promise((resolve, reject) => {
+        try {
+            let access_token = getCookieAccessToken(ACCESS_TOKEN_KEY);
+            if (access_token) {
+                fetch(`${BASEURL}/orders?${page !== 1 ? `page=${page}&` : ``}${searchTerm !== '' ? `q=${searchTerm}` : ``}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        authorization: `Bearer ${access_token}`
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        resolve(data);
+                    })
+                    .catch(err => {
+                        reject(err);
+                    })
+            }
+        } catch (error) {
+            reject(error);
+        }
+    })
+
+}

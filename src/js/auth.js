@@ -119,7 +119,7 @@ const cleanTokens = () => {
     let date = new Date();
     date.setTime(date.getTime() - 24 * 60 * 60);
     expires = `; expires=${date.toUTCString()}`;
-    document.cookie = `${ACCESS_TOKEN_KEY}=${accessToken}${expires};path=/`;
+    document.cookie = `${ACCESS_TOKEN_KEY}=''${expires};path=/`;
     localStorage.removeItem(REFRESH_TOKEN_KEY);
 }
 

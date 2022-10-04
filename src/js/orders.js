@@ -1,4 +1,5 @@
 import { getOrdersData } from "./utilities";
+import { logout } from "./auth";
 import "../css/orders.css";
 
 
@@ -8,6 +9,8 @@ const currentPage = document.getElementById("current-page");
 const nextPage = document.getElementById("next-page");
 const previousPage = document.getElementById("previous-page");
 const searchQuery = document.getElementById("search-query");
+const navToDashboard = document.getElementById("nav-to-dashboard");
+const loggingOut = document.getElementById("log-out");
 
 let initialPage = 1;
 let search = '';
@@ -97,10 +100,22 @@ const handleQueryChange = (event) => {
     }, 1000)
 }
 
+const navigateToDashboard = (e) => {
+    e.preventDefault();
+    window.location.assign("./dashboard.html");
+}
+
+const logOutUser = (e) => {
+    e.preventDefault();
+    logout();
+}
+
 
 nextPage.addEventListener('click', handleNextPage);
 previousPage.addEventListener('click', handlePrevPage);
 searchQuery.addEventListener("keyup", handleQueryChange)
+navToDashboard.addEventListener('click', navigateToDashboard);
+loggingOut.addEventListener('click', logOutUser);
 
 
 

@@ -92,6 +92,8 @@ export const refreshCookieAccessToken = (refreshToken) => {
     resetAccessToken(refreshToken)
         .then(data => {
             setCookieAccessToken(data.access_token, refreshToken);
+            //!Place to add function
+            window.location.reload();
         })
         .catch(err => {
             console.log("refreshCookieAccessToken - Error", err);
@@ -141,7 +143,9 @@ export const authenticateCalls = () => {
     if (getCookieAccessToken(ACCESS_TOKEN_KEY) === "" && refreshToken === "") {
         // Redirect user to login page
         window.location.assign('./');
-    } else if (getCookieAccessToken(ACCESS_TOKEN_KEY) === "" && refreshToken !== "") {
+    }
+    //Where access_token has expired
+    else if (getCookieAccessToken(ACCESS_TOKEN_KEY) === "" && refreshToken !== "") {
         //refresh access_token
         refreshCookieAccessToken(refreshToken);
     }

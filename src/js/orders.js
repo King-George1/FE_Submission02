@@ -1,5 +1,5 @@
 import { getOrdersData } from "./utilities";
-import { logout } from "./auth";
+import { logout, authenticateCalls } from "./auth";
 import "../css/orders.css";
 
 
@@ -20,6 +20,7 @@ let orderData;
 let totalPages;
 
 const loadOrderDataAndDisplay = (initPage, searchTerm) => {
+    authenticateCalls();
     getOrdersData(initPage, searchTerm)
         .then(res => {
             orderValues = res;

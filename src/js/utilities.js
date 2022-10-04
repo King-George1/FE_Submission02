@@ -1,7 +1,10 @@
-import { BASEURL, getCookieAccessToken, ACCESS_TOKEN_KEY } from "./auth";
+import { BASEURL, getCookieAccessToken, ACCESS_TOKEN_KEY, authenticateCalls } from "./auth";
+
+
 
 //Functions that get fetches the dashboard data
 export const getDashboardData = () => {
+    authenticateCalls();
     return new Promise((resolve, reject) => {
         try {
             let access_token = getCookieAccessToken(ACCESS_TOKEN_KEY);

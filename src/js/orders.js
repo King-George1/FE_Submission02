@@ -4,6 +4,7 @@ import "../css/orders.css";
 
 
 const orderTableRef = document.getElementById("order-table").getElementsByTagName('tbody')[0];
+
 const lastPage = document.getElementById("last-page");
 const currentPage = document.getElementById("current-page");
 const nextPage = document.getElementById("next-page");
@@ -11,6 +12,7 @@ const previousPage = document.getElementById("previous-page");
 const searchQuery = document.getElementById("search-query");
 const navToDashboard = document.getElementById("nav-to-dashboard");
 const loggingOut = document.getElementById("log-out");
+const overLay = document.getElementById("the-overlay");
 
 let initialPage = 1;
 let search = '';
@@ -18,6 +20,8 @@ let search = '';
 let orderValues;
 let orderData;
 let totalPages;
+
+
 
 const loadOrderDataAndDisplay = (initPage, searchTerm) => {
     authenticateCalls();
@@ -45,6 +49,8 @@ const loadOrderDataAndDisplay = (initPage, searchTerm) => {
             } else {
                 nextPage.style.visibility = "visible";
             }
+
+            overLay.style.display = "none";
         })
 }
 
@@ -73,6 +79,7 @@ window.addEventListener("load", loadOrderDataAndDisplay(initialPage, search));
 
 //Function to handle next page navigation
 const handleNextPage = () => {
+    overLay.style.display = "block";
     initialPage++;
     orderTableRef.innerHTML = "";
     loadOrderDataAndDisplay(initialPage, search)
@@ -80,6 +87,7 @@ const handleNextPage = () => {
 
 //Function to handle prev page navigation
 const handlePrevPage = () => {
+    overLay.style.display = "block";
     initialPage--;
     orderTableRef.innerHTML = "";
     loadOrderDataAndDisplay(initialPage, search)
@@ -89,11 +97,11 @@ let oldVal = '';
 
 //Function to handle Search functionality
 const handleQueryChange = (event) => {
+    orderTableRef.innerHTML = "LOADING.....";
     initialPage = 1;
     setTimeout(() => {
         if (oldVal !== event.target.value) {
             oldVal = event.target.value
-            console.log(event.target.value)
             orderTableRef.innerHTML = "";
             loadOrderDataAndDisplay(initialPage, event.target.value);
             search = event.target.value;

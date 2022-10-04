@@ -1,0 +1,86 @@
+body{
+    display: flex;
+}
+
+#logo{
+    display: block;
+    margin: 30px 0 30px 0;
+    max-width: 80px;
+}
+
+#navBar{
+    padding: 0.625rem;
+    margin-right: 50px;
+}
+
+#order-info{
+    border-left: 2px solid darkgray;
+    padding-left: 25px;
+    width: 60%;
+    }
+    
+    .navItem{
+        display: block;
+        margin-bottom: 1.25rem;   
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: black;
+    }
+#order-search{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#search{
+    display: flex;
+    align-items: center;
+}
+div#search > img{
+    display: inline-block;
+}
+
+div#search > input{
+    display: inline-block;
+    height: 20px;
+    border: 2px solid black;
+    margin-left: 5px;
+}
+
+
+#order-table {
+    border: 2px solid darkgray;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #order-table td, #order-table th {
+    padding: 15px;
+  }
+
+  td{
+    font-weight:bold;
+  }
+  
+  #order-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+  }
+
+ td[data-num="Delivered"]{
+    color: lightgreen;
+ }
+ td[data-num="Processing"]{
+    color: red;
+ }
+ #pagination{
+    font-weight: bolder;
+    font-size: 1.2rem;
+ }
+
+#next-page, #previous-page{
+    cursor: pointer;
+}

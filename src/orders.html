@@ -8,6 +8,44 @@
     <script defer src="bundle.js"></script>
   </head>
   <body>
-    <h1>Orders</h1>
+    <div id="navBar">
+      <img src="../assets/Freddys_Logo.svg" alt="" id="logo" />
+      <a class="navItem" href="">Dashboard</a>
+      <a class="navItem" href="">Orders</a>
+      <a class="navItem" href="">Logout</a>
+    </div>
+    <div id="order-info">
+      <div id="order-search">
+        <h1>Orders</h1>
+        <div id="search">
+          <!-- later search for emogi to use -->
+          <img
+            src="../assets/searchbar.png"
+            alt="search-icon"
+            width="25"
+            height="25"
+          />
+          <input type="text" id="search-query" value="" />
+        </div>
+      </div>
+      <table id="order-table">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Date</th>
+            <th>Price</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="pagination">
+        <p>
+          Page <span id="previous-page">&lt;</span>
+          <span id="current-page"></span> of <span id="last-page"></span
+          ><span id="next-page"> &gt; </span>
+        </p>
+      </div>
+    </div>
   </body>
 </html>

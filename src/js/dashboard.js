@@ -1,5 +1,6 @@
 import { Chart, BarController, BarElement, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
 import { getDashboardData, graphing, arrangeData } from "./utilities";
+import { logout } from './auth';
 import "../css/dashboard.css";
 
 Chart.register(LineController, LineElement, BarElement, BarController, PointElement, LinearScale, Title, CategoryScale);
@@ -8,6 +9,8 @@ Chart.register(LineController, LineElement, BarElement, BarController, PointElem
 const checkBox = document.getElementById("check-box");
 const graphHeading = document.getElementById("graph-header");
 const tableRef = document.getElementById("sales").getElementsByTagName('tbody')[0];
+const navToOrder = document.getElementById("nav-to-order");
+const logOutUser = document.getElementById("log-out-user");
 
 let data;
 let sales_over_time_week;
@@ -138,10 +141,25 @@ const handleToggleChange = () => {
 
     const myChartw = new Chart(ctx, graph)
 }
+
+
+const navigateToOrdersPage = (e) => {
+    e.preventDefault();
+    window.location.assign("./orders.html");
+}
+
+const loggingOutUser = (e) => {
+    e.preventDefault();
+    logout();
+}
+
 checkBox.addEventListener("change", handleToggleChange)
-
-
 window.addEventListener('load', loadDataAndPlot);
+navToOrder.addEventListener('click', navigateToOrdersPage)
+logOutUser.addEventListener('click', loggingOutUser);
+
+
+
 
 
 

@@ -7,6 +7,20 @@ const loginForm = document.getElementById("loginForm");
 const userNameInput = document.getElementById("input-username");
 const passwordInput = document.getElementById("input-password");
 const errorMessage = document.getElementById("error-message");
+const inputSubmit = document.getElementById("input-submit");
+
+const disableSubmit = () => {
+    inputSubmit.setAttribute('disabled', true);
+    inputSubmit.style.cursor = 'default';
+    inputSubmit.value = "Logging In..."
+}
+const enableSubmit = () => {
+    inputSubmit.removeAttribute('disabled')
+    inputSubmit.style.cursor = 'pointer';
+    inputSubmit.value = "Login"
+}
+
+
 
 
 //Function to handle client-side validation error
@@ -16,10 +30,11 @@ const handleErrorLogIn = (errorMsg) => {
 }
 
 
-
 //Function to handle logging in when the user clicks on the login button
 const handleLogin = (event) => {
     event.preventDefault();
+    disableSubmit();
+
     errorMessage.style.visibility = "hidden";
     if (userNameInput.value === "" || passwordInput.value === "") {
         handleErrorLogIn("Username or Password cannot be empty");
@@ -36,16 +51,20 @@ const handleLogin = (event) => {
                 } else {
                     if ("msg" in res) {
                         handleErrorLogIn(res.msg);
+                        enableSubmit();
                     } else {
                         handleErrorLogIn("Error Logging In");
+                        enableSubmit();
                     }
                 }
             })
             .catch(err => {
                 handleErrorLogIn("Error Logging In");
+                enableSubmit();
             })
     } catch (err) {
         handleErrorLogIn("Error Logging In");
+        inputSubmit.value = "Login"
     }
 }
 

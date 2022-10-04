@@ -57,6 +57,11 @@ body #login-container{
     color: white;
 }
 
+#input-submit:disabled:hover{
+    color: darkgray;
+    background-color: lightgray;
+}
+
 
 #shop-title{
     font-size: 1.55rem;

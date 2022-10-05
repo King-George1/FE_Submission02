@@ -40,6 +40,7 @@ width: 60%;
 .summary-item p{
     margin-top: 3px;
     margin-bottom: 6px;
+    min-width: 130px;
 }
 
 .summary-item p:last-child{
@@ -103,7 +104,8 @@ input:checked[type="checkbox"]::after {
 #sales {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 100% !important;
+    overflow-y: scroll;
   }
   
   #sales td, #sales th {
@@ -123,6 +125,21 @@ input:checked[type="checkbox"]::after {
     height: 100%;
     position: fixed;
     background: darkgray;
+}
+
+td:nth-child(1),  th:nth-child(1) {
+    min-width: 400px;
+  }
+   td:nth-child(3), th:nth-child(3) {
+    min-width: 100px;
+  }
+  .table-container {
+    width: 120% !important;
+    overflow-x: scroll;
+  }
+
+  #chart-container{
+    width: 100% ;
 }
 
 .overlay__inner {
@@ -156,5 +173,54 @@ input:checked[type="checkbox"]::after {
   100% {
     transform: rotate(360deg);
   }
+}
+
+@media(max-width: 320px){
+    #chart-container{
+        width: 230% ;
+    }
+       td:nth-child(1), th:nth-child(1) {
+        min-width: 300px;
+      }
+     td:nth-child(3), th:nth-child(3) {
+        min-width: 100px;
+      }
+      .summary-item{
+        min-width: 110px;
+      }
+      .table-container {
+        width: 230% !important;
+        overflow-x: scroll;
+      }
+      #navBar{
+        padding: 0.2rem;
+        margin-right: 10px;
+    }
+    
+}
+
+@media (min-width: 321px) and (max-width: 425px){
+    #chart-container{
+        width: 180% ;
+    }
+    
+    .summary-item{
+        min-width: 110px;
+      }
+       td:nth-child(1),  th:nth-child(1) {
+        min-width: 300px;
+      }
+       td:nth-child(3), th:nth-child(3) {
+        min-width: 100px;
+      }
+      .table-container {
+        width: 180% !important;
+        overflow-x: scroll;
+      }
+      #navBar{
+        padding: 0.2rem;
+        margin-right: 10px;
+    }
+      
 }
 

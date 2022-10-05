@@ -1,6 +1,7 @@
 export const BASEURL = "https://freddy.codesubmit.io";
 export const ACCESS_TOKEN_KEY = "accessToken";
 const COOKIE_MAX_AGE = 15 * 60 * 1000; //access token will be stored for 15 minutes in the cookie storage
+const COOKIE_RESFRESH_MAX_AGE = 30 * 24 * 60 * 60 * 1000; //refresh token will be stored for 30 days in the cookie storage
 const REFRESH_TOKEN_KEY = "refreshToken";
 
 
@@ -38,11 +39,17 @@ const initiatelogin = (username, password) => {
 //Function to store access_token and refresh_token at the client side when user logs in
 export const setCookieAccessToken = (accessToken, refreshToken) => {
     let expires = "";
+    let refresh_expires = "";
     let date = new Date();
+    let refresh_token_date = new Date();
     date.setTime(date.getTime() + COOKIE_MAX_AGE);
+    refresh_token_date.setTime(date.getTime() + COOKIE_RESFRESH_MAX_AGE);
     expires = `; expires=${date.toUTCString()}`;
+    refresh_expires = `; expires=${refresh_token_date.toUTCString()}`;
     document.cookie = `${ACCESS_TOKEN_KEY}=${accessToken}${expires};path=/`;
-    localStorage.setItem(REFRESH_TOKEN_KEY, JSON.stringify(refreshToken))
+    if (refreshToken !== "") {
+        document.cookie = `${REFRESH_TOKEN_KEY}=${refreshToken}${refresh_expires};path=/`;
+    }
 
 }
 
@@ -91,7 +98,7 @@ export const resetAccessToken = (refreshToken) => {
 export const refreshCookieAccessToken = (refreshToken) => {
     resetAccessToken(refreshToken)
         .then(data => {
-            setCookieAccessToken(data.access_token, refreshToken);
+            setCookieAccessToken(data.access_token, "");
             //!Place to add function
             window.location.reload();
         })
@@ -122,7 +129,7 @@ const cleanTokens = () => {
     date.setTime(date.getTime() - 24 * 60 * 60);
     expires = `; expires=${date.toUTCString()}`;
     document.cookie = `${ACCESS_TOKEN_KEY}=''${expires};path=/`;
-    localStorage.removeItem(REFRESH_TOKEN_KEY);
+    document.cookie = `${REFRESH_TOKEN_KEY}=''${expires};path=/`;
 }
 
 
@@ -137,10 +144,11 @@ export const logout = () => {
 //This function will help reduce the number of round trip if access_token expires
 //This function will be called before making a request to the backend for data
 export const authenticateCalls = () => {
-    const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY) ? JSON.parse(localStorage.getItem(REFRESH_TOKEN_KEY)) : "";
+    const refreshToken = getCookieAccessToken(REFRESH_TOKEN_KEY);
+    const accessToken = getCookieAccessToken(ACCESS_TOKEN_KEY);
 
     //Add a condition to determine if not on sign in page
-    if (getCookieAccessToken(ACCESS_TOKEN_KEY) === "" && refreshToken === "") {
+    if (accessToken === "" && refreshToken === "") {
         // Redirect user to login page
         window.location.assign('./');
     }
@@ -155,7 +163,7 @@ export const authenticateCalls = () => {
 
 //Function to protect private routes
 export const protectRoutes = () => {
-    const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY) ? JSON.parse(localStorage.getItem(REFRESH_TOKEN_KEY)) : "";
+    const refreshToken = getCookieAccessToken(REFRESH_TOKEN_KEY);
     if (getCookieAccessToken(ACCESS_TOKEN_KEY) === "" && refreshToken === "") {
         //Redirect user to login page
         window.location.assign('./');

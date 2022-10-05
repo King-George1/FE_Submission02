@@ -30,43 +30,14 @@ const loadDataAndPlot = () => {
             dataForGraph = sales_over_time_week;
             handleSummaryData();
             const graph = graphing(dataForGraph, duration);
-            //     type: 'bar',
-            //     data: {
-            //         labels: labelsForGraph(dataForGraph, duration),
-            //         datasets: [{
-            //             label: '# of Sales',
-            //             data: revenueForGraph(dataForGraph, duration),
-            //             backgroundColor: [
-            //                 'rgba(255, 99, 132, 0.2)',
-            //                 'rgba(54, 162, 235, 0.2)',
-            //                 'rgba(255, 206, 86, 0.2)',
-            //                 'rgba(75, 192, 192, 0.2)',
-            //                 'rgba(153, 102, 255, 0.2)',
-            //                 'rgba(255, 159, 64, 0.2)'
-            //             ],
-            //             borderColor: [
-            //                 'rgba(255, 99, 132, 1)',
-            //                 'rgba(54, 162, 235, 1)',
-            //                 'rgba(255, 206, 86, 1)',
-            //                 'rgba(75, 192, 192, 1)',
-            //                 'rgba(153, 102, 255, 1)',
-            //                 'rgba(255, 159, 64, 1)'
-            //             ],
-            //             borderWidth: 1
-            //         }]
-            //     },
-            //     options: {
-            //         scales: {
-            //             y: {
-            //                 beginAtZero: true
-            //             }
-            //         }
-            //     }
-            // };
 
 
-            const bestsellersInfo = data.dashboard.bestsellers.map(x => ({ name: x.product.name, price: x.revenue / x.units, unitSold: x.units, revenue: x.revenue }));
+            let bestsellersInfo = data.dashboard.bestsellers.map(x => ({ name: x.product.name, price: x.revenue / x.units, unitSold: x.units, revenue: x.revenue }));
 
+            //Sorted the bestsellers details in descending order based on the units sold.
+            bestsellersInfo = bestsellersInfo.sort(function (a, b) {
+                return b.unitSold - a.unitSold;
+            })
             for (let item of bestsellersInfo) {
                 createTableDataRows(item.name, item.price, item.unitSold, item.revenue);
             }
@@ -75,7 +46,7 @@ const loadDataAndPlot = () => {
 
         })
         .catch(err => {
-            console.log(err);
+
         })
 
 }

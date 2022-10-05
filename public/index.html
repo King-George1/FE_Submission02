@@ -7,8 +7,41 @@
     <title>Login</title>
   <script defer src="orders.js"></script><script defer src="dashboard.js"></script><script defer src="index.js"></script></head>
   <body>
-    <h1>Login</h1>
-    <h1>Login</h1>
-    <h1>Login and this is King George</h1>
+    <div id="main-container">
+      <div id="login-container">
+        <div class="login-info">
+          <p id="shop-title">Freddy's Artisanal Halloween Candy Shop</p>
+          <img
+            src="./images/Freddys_Logo.svg"
+            width="42%"
+            height="42%"
+            alt="shop-logo"
+          />
+        </div>
+        <form id="loginForm">
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            id="input-username"
+            class="form-fields"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="********"
+            id="input-password"
+            class="form-fields"
+          />
+          <p id="error-message">Input Errors</p>
+          <input
+            type="submit"
+            value="Login"
+            class="form-fields"
+            id="input-submit"
+          />
+        </form>
+      </div>
+    </div>
   </body>
 </html>

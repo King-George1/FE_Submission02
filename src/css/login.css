@@ -1,5 +1,5 @@
 body{
-    background-color: lightgray;
+    background-color: rgb(226, 220, 220);
     height: 90%;
     
 }
@@ -19,8 +19,8 @@ body #login-container{
     height: 24.25rem;
 }
 #login-container{
-    border: 5px solid darkgray;
-    padding: 1.7rem;   
+    border: 7px solid rgb(148, 143, 143);
+    padding: 1.5rem;   
 }
 .login-info{
     display: flex;

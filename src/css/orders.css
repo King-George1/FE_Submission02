@@ -1,3 +1,7 @@
+body{
+    background-color: rgb(226, 220, 220);
+}
+
 #mainContainer{
     display: flex;
 }
@@ -84,6 +88,10 @@ div#search > input{
 #next-page, #previous-page{
     cursor: pointer;
 }
+
+td:nth-child(2), th:nth-child(2) {
+    min-width: 100px;
+  }
 
 .overlay {
     left: 0;
